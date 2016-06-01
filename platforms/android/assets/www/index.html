@@ -1,48 +1,57 @@
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<script src="js/fabric.js"></script>
-<style>
-body {
-  margin: 0;
-}
-#display {
-  display: flex;
-}
-#controls {
-  display: flex;
-  margin: 30px;
-}
-.output {
-  margin: 5px;
-  display: inline-block;
-  vertical-align: top;
-}
-.cell {
-  display: inline-block;
-  height: 40px;
-  width: 40px;
-}
-.enter {
-  margin: 30px;
-  display: inline-block;
-  height: 60px;
-  width: 60px;
-}
-.button {
-  background: black;
-  border-radius: 50%;
-}
-</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <style>
+  body {
+    margin: 0;
+  }
+  #container {
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    top: 50%;
+    margin-top: -250px;
+  }
+  #display {
+    display: flex;
+  }
+  #controls {
+    display: flex;
+    margin: 30px;
+  }
+  .output {
+    margin: 5px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .cell {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+  }
+  .enter {
+    margin: 30px;
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+  }
+  .button {
+    background: black;
+    border-radius: 50%;
+  }
+  </style>
 </head>
 <body>
-<div id='display'></div>
-<div id='controls'></div>
-<script src='js/display.js'></script>
-<script src='js/input.js'></script>
-<script src='js/cargame.js'></script>
-<script src='js/tetris.js'></script>
-<script src='js/menu.js'></script>
-<script src='js/console.js'></script>
+  <div id='container'>
+    <div id='display'></div>
+    <div id='controls'></div>
+  </div>
+  <script src="js/fabric.js"></script>
+  <script src='js/display.js'></script>
+  <script src='js/input.js'></script>
+  <script src='js/cargame.js'></script>
+  <script src='js/tetris.js'></script>
+  <script src='js/menu.js'></script>
+  <script src='js/console.js'></script>
 </body>
 </html>
