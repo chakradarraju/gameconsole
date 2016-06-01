@@ -1,0 +1,76 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "indie.console"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "indie.console"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "indie.console"
+        }
+    }
+}
