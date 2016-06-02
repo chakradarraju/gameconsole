@@ -228,7 +228,7 @@ Block.prototype.getPixels = function() {
 
 Block.prototype.getRotatedPixels = function() {
   return this.pixels_.map(function(pixel) {
-    return [this.x_ - this.y_ + pixel[1], this.x_ + this.y_ - pixel[0]];
+    return [this.x_ + this.y_ - pixel[1], this.y_ - this.x_ + pixel[0]];
   }.bind(this));
 };
 
