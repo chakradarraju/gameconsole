@@ -16,6 +16,20 @@ function Tetris(console, display, input, endCallback) {
   this.setupBlocks_();
 }
 
+Tetris.prototype.pause = function() {
+  if (this.ticker_) {
+    clearInterval(this.ticker_);
+  }
+};
+
+Tetris.prototype.resume = function() {
+  this.ticker_ = setInterval(this.tick_.bind(this), this.tickerInterval_());
+};
+
+Tetris.prototype.tickerInterval_ = function() {
+  return Math.ceil(1000 / (this.getLevel() + 3));
+};
+
 Tetris.prototype.setupInputHandlers_ = function() {
   this.input_.listenPress(LEFT_KEY, this.moveLeft_.bind(this));
   this.input_.listenPress(RIGHT_KEY, this.moveRight_.bind(this));
@@ -58,12 +72,10 @@ Tetris.prototype.getLevel = function() {
 };
 
 Tetris.prototype.setLevel_ = function(level) {
+  this.pause();
   this.level_ = level;
   this.display_.setLevel(level);
-  if (this.ticker_) {
-    clearInterval(this.ticker_);
-  }
-  this.ticker_ = setInterval(this.tick_.bind(this), Math.ceil(1000 / (level + 3)));
+  this.resume();
 };
 
 Tetris.prototype.setupScore_ = function() {

@@ -13,9 +13,35 @@ function CarGame(console, display, input, endCallback) {
 
   this.setupInputHandler_();
   this.setupCars_();
-  this.setupSpeed_();
-  this.setupScore_();
+  this.setLevel_(1);
+  this.score_ = 0;
+  this.nitro_ = false;
 }
+
+CarGame.prototype.pause = function() {
+  if (this.ticker_) {
+    clearInterval(this.ticker_);
+  }
+  if (this.scoreTicker_) {
+    clearInterval(this.scoreTicker_);
+  }
+};
+
+CarGame.prototype.resume = function() {
+  this.ticker_ = setInterval(this.tick_.bind(this), this.tickerInterval_());
+  this.scoreTicker_ = setInterval(function() {
+    var score = this.getScore();
+    var level = Math.ceil(Math.sqrt(score / 100));
+    if (level != this.getLevel()) {
+      this.setLevel_(level);
+    }
+    this.console_.setScore(this, score);
+  }.bind(this), 500);
+};
+
+CarGame.prototype.tickerInterval_ = function() {
+  return Math.ceil(600 / (this.getLevel() + 1));
+};
 
 CarGame.prototype.setupInputHandler_ = function() {
   this.input_.listenPress(LEFT_KEY, this.movePlayerLeft_.bind(this));
@@ -56,33 +82,15 @@ CarGame.prototype.setupCars_ = function() {
   this.otherCars_.push(CarGame.newCar());
 };
 
-CarGame.prototype.setupSpeed_ = function() {
-  this.nitro_ = false;
-  this.setLevel_(1);
-  this.speedTicker_ = setInterval(function() {
-    this.setLevel_(this.getLevel() + 1);
-  }.bind(this), 5000);
-};
-
 CarGame.prototype.getLevel = function() {
   return this.level_;
 };
 
 CarGame.prototype.setLevel_ = function(level) {
+  this.pause();
   this.level_ = level;
   this.display_.setLevel(level);
-  if (this.ticker_) {
-    clearInterval(this.ticker_);
-  }
-  this.ticker_ = setInterval(this.tick_.bind(this), Math.ceil(600 / (level + 1)));
-};
-
-CarGame.prototype.setupScore_ = function() {
-  this.score_ = 0;
-  this.console_.setScore(this, 0);
-  this.scoreTicker_ = setInterval(function() {
-    this.console_.setScore(this, this.getScore());
-  }.bind(this), 500);
+  this.resume();
 };
 
 CarGame.prototype.activateNitro_ = function() {
@@ -149,9 +157,7 @@ CarGame.prototype.getScore = function() {
 };
 
 CarGame.prototype.endGame_ = function() {
-  clearInterval(this.ticker_);
-  clearInterval(this.speedTicker_);
-  clearInterval(this.scoreTicker_);
+  this.pause();
   this.input_.reset();
   this.endCallback_();
 };

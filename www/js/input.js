@@ -3,6 +3,7 @@ LEFT_KEY = 37;
 RIGHT_KEY = 39;
 DOWN_KEY = 40;
 UP_KEY = 38;
+SPACE_KEY = 32;
 
 function Input() {
   this.reset();
