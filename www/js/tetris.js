@@ -51,9 +51,6 @@ Tetris.prototype.rotate_ = function() {
 
 Tetris.prototype.setupSpeed_ = function() {
   this.setLevel_(1);
-  this.speedTicker_ = setInterval(function() {
-    this.setLevel_(this.getLevel() + 1);
-  }.bind(this), 120000);
 };
 
 Tetris.prototype.getLevel = function() {
@@ -66,7 +63,7 @@ Tetris.prototype.setLevel_ = function(level) {
   if (this.ticker_) {
     clearInterval(this.ticker_);
   }
-  this.ticker_ = setInterval(this.tick_.bind(this), Math.ceil(600 / (level + 3)));
+  this.ticker_ = setInterval(this.tick_.bind(this), Math.ceil(1000 / (level + 3)));
 };
 
 Tetris.prototype.setupScore_ = function() {
@@ -76,6 +73,15 @@ Tetris.prototype.setupScore_ = function() {
 
 Tetris.prototype.getScore = function() {
   return this.score_;
+};
+
+Tetris.prototype.setScore_ = function(score) {
+  this.score_ = score;
+  this.console_.setScore(this, score);
+  var newLevel = Math.ceil((score + 1) / 200);
+  if (this.getLevel != newLevel) {
+    this.setLevel_(newLevel);
+  }
 };
 
 Tetris.prototype.setupBlocks_ = function() {
@@ -106,7 +112,7 @@ Tetris.prototype.cleanupFullLines_ = function() {
     if (!this.isLineFull_(i)) {
       cur--;
     } else {
-      this.score_ += 10;
+      this.setScore_(this.getScore() + 10);
     }
   }
   for (var y = cur; y >= 0; y--) {
@@ -114,7 +120,6 @@ Tetris.prototype.cleanupFullLines_ = function() {
       this.display_.hide(x, y);
     }
   }
-  this.console_.setScore(this, this.getScore());
 };
 
 Tetris.prototype.isLineFull_ = function(y) {
@@ -186,7 +191,6 @@ Tetris.prototype.reachedTop_ = function(block) {
 
 Tetris.prototype.endGame_ = function() {
   clearInterval(this.ticker_);
-  clearInterval(this.speedTicker_);
   this.input_.reset();
   this.endCallback_();
 };
