@@ -5,7 +5,8 @@ DOWN = 1;
 LEFT = -1;
 RIGHT = 1;
 
-function CarGame(display, input, endCallback) {
+function CarGame(console, display, input, endCallback) {
+  this.console_ = console;
   this.display_ = display;
   this.input_ = input;
   this.endCallback_ = endCallback;
@@ -78,9 +79,9 @@ CarGame.prototype.setLevel_ = function(level) {
 
 CarGame.prototype.setupScore_ = function() {
   this.score_ = 0;
-  this.display_.setScore(0);
+  this.console_.setScore(this, 0);
   this.scoreTicker_ = setInterval(function() {
-    this.display_.setScore(this.getScore());
+    this.console_.setScore(this, this.getScore());
   }.bind(this), 500);
 };
 

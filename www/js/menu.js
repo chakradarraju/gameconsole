@@ -1,6 +1,7 @@
 GAMES = [CarGame, Tetris];
 
-function Menu(display, input, startCallback) {
+function Menu(console, display, input, startCallback) {
+  this.console_ = console;
   this.display_ = display;
   this.input_ = input;
   this.startCallback_ = startCallback;
@@ -31,6 +32,7 @@ Menu.prototype.showPrevious_ = function() {
 
 Menu.prototype.showPreview_ = function() {
   GAMES[this.selectionIndex_].showPreview(this.display_);
+  this.console_.showHiScore(GAMES[this.selectionIndex_]);
 };
 
 Menu.prototype.startGame_ = function() {

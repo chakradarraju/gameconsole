@@ -4,7 +4,8 @@ RIGHT = 1;
 LEFT_WALL = 0;
 RIGHT_WALL = 11;
 
-function Tetris(display, input, endCallback) {
+function Tetris(console, display, input, endCallback) {
+  this.console_ = console;
   this.display_ = display;
   this.input_ = input;
   this.endCallback_ = endCallback;
@@ -70,7 +71,7 @@ Tetris.prototype.setLevel_ = function(level) {
 
 Tetris.prototype.setupScore_ = function() {
   this.score_ = 0;
-  this.display_.setScore(0);
+  this.console_.setScore(this, 0);
 };
 
 Tetris.prototype.getScore = function() {
@@ -113,7 +114,7 @@ Tetris.prototype.cleanupFullLines_ = function() {
       this.display_.hide(x, y);
     }
   }
-  this.display_.setScore(this.getScore());
+  this.console_.setScore(this, this.getScore());
 };
 
 Tetris.prototype.isLineFull_ = function(y) {

@@ -40,6 +40,7 @@ Display.prototype.initOutputs_ = function() {
   this.el_.appendChild(container);
   this.level_ = Display.createOutput_(container, 'Level: ');
   this.score_ = Display.createOutput_(container, 'Score: ');
+  this.hiScore_ = Display.createOutput_(container, 'Hi score: ');
   this.message_ = Display.createOutput_(container, '');
 };
 
@@ -124,6 +125,10 @@ Display.prototype.setLevel = function(level) {
 
 Display.prototype.setScore = function(score) {
   this.score_.innerText = score;
+};
+
+Display.prototype.setHiScore = function(score) {
+  this.hiScore_.innerText = score;
 };
 
 Display.prototype.setMessage = function(message) {
